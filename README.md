@@ -1,83 +1,100 @@
-# 📊 Market Sentiment Analysis: Fear & Greed vs Trader Behavior (Hyperliquid)
+# 📊 Hyperliquid Market Sentiment Analysis  
+### Fear & Greed Index vs Trader Behavior
+
+---
 
 ## 🔍 Overview
 
-This project analyzes how **market sentiment (Fear vs Greed)** affects trader behavior and performance on Hyperliquid.
+This project analyzes how **market sentiment (Fear vs Greed)** impacts trader behavior and performance on Hyperliquid.
 
-🎯 Goal:
-- Understand behavioral patterns
-- Measure performance differences
-- Build **actionable trading strategies**
+🎯 Objectives:
+- Understand trader behavior across sentiment regimes  
+- Compare performance (PnL, win rate)  
+- Generate **actionable trading strategies**  
 
 ---
 
 ## 🧠 Key Insights
 
-### 1. Traders Perform Better During Fear 😮
+### 📉 1. Traders Perform Better During Fear
 
 | Metric | Fear | Greed |
 |--------|------|-------|
 | Win Rate | Higher | Lower |
 | Avg PnL | Higher | Lower |
 
-👉 **Insight:**  
-Fear leads to disciplined trading, while Greed causes overconfidence.
+👉 Fear encourages disciplined decisions, while Greed leads to overconfidence.
 
 ---
 
-### 2. Risk Increases During Greed
+### ⚠️ 2. Risk Increases During Greed
 
-- Trade size ↑ **+34.5%**
-- Leverage ↑ **+15.2%**
-- Long bias ↑ **48% → 62%**
+- Trade Size ↑ **+34.5%**  
+- Leverage ↑ **+15.2%**  
+- Long Bias ↑ **48% → 62%**  
 
-👉 More risk → worse performance
+👉 Higher risk → lower performance  
 
 ---
 
-### 3. Best Trader Profile 🏆
+### 🏆 3. Best Trader Profile
 
 ✔ Low trading frequency  
 ✔ Moderate leverage  
 ✔ Consistent win rate (>50%)  
 
-👉 Most stable and profitable
+👉 Most stable and profitable segment  
 
 ---
 
 ## 📁 Dataset
 
-### 1. Fear & Greed Index
-- Daily sentiment data (2018–2025)
-- Categories: Fear → Extreme Greed
+### 📊 Fear & Greed Index
+- Daily sentiment data (2018–2025)  
+- Categories: Extreme Fear → Extreme Greed  
 
-### 2. Hyperliquid Trades
-- ~6000 trades
-- Fields: size, side, PnL, timestamp
+### 📈 Hyperliquid Trading Data
+- ~6000 trades  
+- Includes:
+  - Trade size  
+  - Buy/Sell side  
+  - PnL  
+  - Timestamp  
 
 ---
 
 ## ⚙️ Methodology
 
-1. Data cleaning & preprocessing  
-2. Date alignment (daily level)  
-3. Feature engineering:
-   - Win rate  
-   - Avg PnL  
-   - Trade size  
-   - Long/short ratio  
-4. Segmentation:
-   - High vs Low frequency  
-   - High vs Moderate leverage  
+### 1. Data Preparation
+- Cleaned missing values & duplicates  
+- Converted timestamps to daily format  
+- Merged sentiment + trading data  
+
+### 2. Feature Engineering
+- Daily PnL  
+- Win rate  
+- Trade size  
+- Trade frequency  
+- Long/Short ratio  
+
+### 3. Analysis
+- Performance comparison (Fear vs Greed)  
+- Behavioral changes  
+- Trader segmentation:
+  - High vs Low frequency  
+  - High vs Moderate leverage  
 
 ---
 
-## 📊 Analysis Performed
+## 📊 Visual Analysis
 
-- Performance comparison (Fear vs Greed)
-- Behavioral changes (size, leverage, bias)
-- Trader segmentation
-- Visualization (PnL, win rate, distribution)
+The project includes:
+
+- 📈 Win Rate by Sentiment  
+- 💰 Avg PnL per Trade  
+- 📊 Trade Size Analysis  
+- 🔄 Long vs Short Behavior  
+- 📉 Trader Clustering (PCA, Radar)  
 
 ---
 
@@ -89,71 +106,89 @@ Fear leads to disciplined trading, while Greed causes overconfidence.
 IF sentiment = Fear:
 Increase position size (+20%)
 Prefer LONG positions
-Wider profit targets (8%)
+Take profit = 8%
+Stop loss = -4%
 
 
 👉 Expected improvement: **+15–20%**
 
 ---
 
-### 🚀 Strategy 2: Segment-Based Adjustment
+### 🚀 Strategy 2: Segment-Based Strategy
 
 | Trader Type | Greed | Fear |
 |------------|------|------|
-| High Frequency | Reduce size (-40%) | Normal |
+| High Frequency | Reduce size (-40%) | Maintain |
 | Low Frequency | Slight reduction | Increase size (+25%) |
 
 ---
 
 ### 🚀 Strategy 3: Sentiment-Based Exit
 
-- Greed → exit early (5%)
-- Fear → let profits run (8%)
+- Greed → exit early (5%)  
+- Fear → let profits run (8%)  
 
 ---
 
 ## 📁 Project Structure
 
-
+```bash
 hyperliquid-sentiment-analysis/
 │
 ├── data/
-│ ├── fear_greed_index.csv
-│ └── historical_data.csv
+│   ├── raw/                    # Original datasets
+│   └── processed/              # Cleaned & transformed data
 │
-├── notebook.ipynb
+├── models/                     # Trained ML models
+│   ├── clustering_scaler.pkl
+│   ├── gradient_boosting_model.pkl
+│   ├── kmeans_model.pkl
+│   ├── random_forest_model.pkl
+│   └── sentiment_encoder.pkl
+│
+├── notebooks/                  # Analysis notebooks
+│   ├── eda.ipynb
+│   └── predictive_modeling_clustering.ipynb
+│
+├── outputs/                    # Visualizations & results
+│   ├── feature_importance.png
+│   ├── model_comparison.png
+│   ├── optimal_clusters.png
+│   ├── performance_by_sentiment.png
+│   ├── trader_archetypes_radar.png
+│   └── trader_clusters_pca.png
+│
+├── src/                        # Utility scripts (if any)
+│
 ├── README.md
-├── requirements.txt
-
-
----
+└── requirements.txt
 
 ## ⚠️ Limitations
 
-- Limited trader sample size  
+- Limited number of traders  
 - Approximate leverage calculation  
 - Short trading time window  
 - Exchange-specific data  
 
 ---
 
-## 🔮 Future Improvements
+## 🔮 Future Work
 
-- Add ML prediction model  
-- Build Streamlit dashboard  
-- Cluster trader behavior  
-- Real-time sentiment integration  
+- Build predictive ML model for profitability  
+- Add real-time sentiment integration  
+- Create interactive dashboard  
+- Expand to multiple exchanges  
 
 ---
 
 ## 🧾 Conclusion
 
-Market sentiment strongly impacts trader behavior.
+Market sentiment significantly influences trader behavior and performance.
 
 💡 Key takeaway:
-> Traders perform better during Fear because they act more cautiously.
+> Traders perform better during Fear due to disciplined decision-making.
 
-👉 Smart traders should:
+👉 Smart trading approach:
 - Reduce risk during Greed  
 - Stay disciplined during Fear  
 
@@ -162,4 +197,6 @@ Market sentiment strongly impacts trader behavior.
 ## 🙌 Acknowledgment
 
 - Fear & Greed Index: Alternative.me  
-- Hyperliquid trading data  
+- Hyperliquid trading dataset  
+
+---
